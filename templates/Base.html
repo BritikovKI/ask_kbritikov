@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
   <head>
 
@@ -8,12 +11,17 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../static/favicon.ico">
+    <link rel="icon" href="/favicon.ico">
 
     <title>Off Canvas Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+          <!-- Bootstrap core CSS -->
+<link href="css/bootstrap.min.css"  rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/offcanvas.css" rel="stylesheet">
+{#    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">#}
     <style>
      ul.hr {
          margin: 0; /* Обнуляем значение отступов */
@@ -60,7 +68,7 @@
 
   <body>
 
-    <nav class="navbar navbar-fixed-top navbar-inverse" style="color:#b9def0;height: 70px;">
+    <nav class="navbar navbar-fixed-top navbar-inverse col-sm-12" style="color:#b9def0;height: 70px;">
       <div class="container" style="color:#b9def0" >
         <div class="navbar-header" style="color:#b9def0" >
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" style="color:#b9def0"  data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -125,31 +133,27 @@
                 <a href="#" class="list-group-item">Link</a>
             </div>
         </div><!--/.sidebar-offcanvas-->
-      </div><!--/row-->
+  <!--/row-->
 
         {%block content%}
 
     {%endblock%}
-    
+
 
     	<hr class="col-sm-12">
       <footer class="container col-sm-12">
         <p>&copy; 2017 Kostyan Company, Inc.</p>
       </footer>
-      
 
-
-  </body>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="/js/offcanvas.js"></script>
+    <script src= <link href="{% static "js/jquery.min.js" %}" rel="stylesheet"></script>
+    <script src= <link href="{% static "js/bootstrap.min.js" %}" rel="stylesheet"  integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-3.2.1.min.js.js" ><\/script>')</script>
+    <script src= "/js/bootstrap.min.js" ></script>
+    <script src="offcanvas.js"></script>
 
   </body>
 </html>
