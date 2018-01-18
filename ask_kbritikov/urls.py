@@ -15,16 +15,23 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from ask_kbritikov import views
+from ask_app.views import *
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^auth$', views.auth, name='auth'),
-    url(r'^main$', views.MainPage, name='MainPage'),
-    url(r'^tag$', views.Tagged,name='Tag'),
-    url(r'^debate$', views.Debate,name='Deb'),
-    url(r'^disc$', views.Discussion,name='Disc'),
-    url(r'^reg$', views.Registration,name='Reg'),
-    url(r'^set$', views.Settings,name='Settings'),
-    url(r'^hot$', views.Hot,name='Hot'),
+#    url(r'modal',mod_log),
+    url(r'scroll',scroll,name='scroll'),
+    url(r'like',like,name='like'),
+    url(r'^vote/&', vote,name='vote'),
+    url(r'^author$',profile,name='author'),
+    url(r'^log_out/?', exit,name="lo"),
+    url(r'^admin/?', admin.site.urls,name='admin'),
+    url(r'^auth$', log, name='auth'),
+    url(r'^$', main_new , name='main'),
+    url(r'^tag$', Tagged.as_view(),name='tag'),
+    url(r'^debate$', Debate,name='deb'),
+    url(r'^question', Discussion,name='disc'),
+    url(r'^reg', Registration,name='reg'),
+    url(r'^set', Settings,name='settings'),
+    url(r'^hot', Hot,name='hot'),
+#    url(r'^myModal',modal)
 ]

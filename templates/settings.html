@@ -1,0 +1,47 @@
+{% if user.is_authenticated %}
+    {% include "authorised.html" %}
+{% else %}
+    {% include "auth.html" %}
+{% endif %}
+
+  {% block head %}my block  {% endblock %}
+  {% block content%}
+<form action="/set" method="POST" style="margin-top: 100px" class="col-sm-9" enctype="multipart/form-data">
+        <h1>Settings</h1>
+
+            {% csrf_token %}
+            <div class="col-sm-9 blog-main" style="margin-top: 80px">
+
+                <label class="col-sm-4 control-label">Login</label>
+                <div class="col-sm-8">
+                    {{ form.login }}
+                </div>
+            </div>
+            <div class="col-sm-12 blog-main" style="margin-top: 10px">
+                <label for="inputPassword" class="col-sm-4 control-label">Email</label>
+                <div class="col-sm-8">
+                    {{ form.email }}
+                </div>
+            </div>
+            <div class="col-sm-12 blog-main" style="margin-top: 10px">
+                <label class="col-sm-4 control-label">NickName</label>
+                <div class="col-sm-8">
+                    {{ form.nickname }}
+                </div>
+            </div>
+            <div class="col-sm-12 blog-main" style="margin-top: 10px">
+                <label for="inputPassword" class="col-sm-4 control-label">Image</label>
+                <img src="{{ us.author.img }}" class="img-responsive" style="margin-left: 10px;height: 100px;width: 100px;">
+                <div class="col-sm-6" style="float: right">
+                    {{ form.image }}
+                </div>
+
+            </div>
+            <button type="submit" class="btn btn-success btn-group" style="float: right;margin-top:30px; margin-right:30px"  >
+                Log In
+            </button>
+
+        </form>
+
+{%endblock%}
+

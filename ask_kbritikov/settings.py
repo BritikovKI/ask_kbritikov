@@ -14,6 +14,8 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -21,7 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = ')(q3s&)(c+8-u!nhka_3hqw07j_d7h4&)ehohq(we#p^bhhy(v'
-
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+# ]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -37,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ask_app',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +55,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'ask_kbritikov.urls'
+
 
 TEMPLATES = [
     {
@@ -71,6 +77,12 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ask_kbritikov.wsgi.application'
 
 
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = BASE_DIR
+MEDIA_URL = '/uploads/'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -118,4 +130,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+

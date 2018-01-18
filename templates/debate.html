@@ -1,0 +1,36 @@
+{% extends "authorised.html" %}
+
+  {% block head %}my block  {% endblock %}
+  {% block content%}
+<form action="/debate" method="POST" style="margin-top: 100px" class="col-sm-9" enctype="multipart/form-data">
+        <h1>New Discussion</h1>
+
+             {% csrf_token %}
+           <div class="col-sm-12 blog-main" style="margin-top: 80px">
+                <label class="col-sm-2 control-label">Subject</label>
+                <div class="col-sm-10">
+                    {{ form.head }}
+                </div>
+            </div>
+            <div class="col-sm-12 blog-main" style="margin-top: 80px">
+                <label class="col-sm-2 control-label">Image</label>
+                <div class="col-sm-10">
+                    {{ form.image }}
+                </div>
+            </div>
+            <div class="col-sm-12 blog-main" style="margin-top: 10px">
+                <label for="inputPassword" class="col-sm-2 control-label">Question</label>
+                <div class="col-sm-10">
+                    {{ form.text }}                </div>
+            </div>
+            <div class="col-sm-12 blog-main" style="margin-top: 10px">
+                <label class="col-sm-2 control-label">Tags</label>
+                <div class="col-sm-10">
+                    {{ form.tags }}
+                </div>
+            </div>
+            <input type="submit" class="btn btn-success btn-group" style="float: right;margin-top: 10px; margin-right:30px"  >
+         </form>
+
+</div>
+{% endblock %}

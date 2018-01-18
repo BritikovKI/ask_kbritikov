@@ -1,0 +1,159 @@
+{% if user.is_authenticated %}
+    {% include "authorised.html" %}
+{% else %}
+    {% include "unauthorised.html" %}
+{% endif %}
+
+{% block head %}
+<script src="jsscroll.js"></script>
+ {% endblock %}
+
+
+{% block content%}
+        <div class="btn-group" role="group" style="margin-top: 20px; margin-left:50px" aria-label="...">
+                <a type="submit" href="{% url "hot" %}" class="btn btn-success">Hot</a>
+                <a type="submit" href="/trands" class="btn btn-warning">Trending</a>
+                <a type="submit" href="/" class="btn btn-danger">New</a>
+            </div>
+<div class="container" style="margin-top: 80px" >
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+       <div class="col-xs-12 col-sm-9 infinite-container" id ="cont">
+{% for i in data%}
+ <div class="col-sm-10 infinite-item" >
+               <div class="col-sm-12 " style="display: inline">
+               <div class="col-sm-3 " style="align-content: center;border-right: black 10px">
+                   <img class="img-rounded" style="border:black;margin-top:15%;width:100px;height: 100px;" src={{i.user.img}}>
+                   <span class="badge" style="margin-left: 15%;margin-bottom: 10px" href="#vasyan">{{ i.user.nickname }}</span>
+                   <div class="form-inline">
+                   <button class="btn btn-success"  id='like{{ i.id }}' onclick="like( '{{ user }}' , {{ i.id }} , true )">
+                    +
+{#                    <span class="glyphicon" aria-hidden="true">+</span>#}
+                </button>
+                <span id="rate{{i.id}}" class="label label-default">{{ i.total_likes }}</span>
+                <button class="btn btn-warning"  id='dislike{{ i.id }}' onclick="like( '{{ user }}' , {{ i.id }} , false )">
+                    -
+{#                    <span class="glyphicon" aria-hidden="true">-</span>#}
+                </button>
+                   </div>
+               </div>
+                <div class="col-sm-9">
+              <h2>{{ i.head }}</h2>
+              <img src="{{ i.image }}" style="max-height: 400px; max-width: 400px"  >
+              <p>{{ i.text }} </p>
+                    </div>
+
+
+                <div class="form-inline">
+
+
+                    <a href="/question?question={{ i.id }}" >Answers({{ i.total_ans }})</a>
+                    <a style="margin-left: 10px; color: black">Tags:
+</a>
+                    {% for k in i.tags.all %}
+                    <a href="/tag?tag={{ k.tagtext }}">{{k.tagtext}}</a>
+                    {% endfor %}
+                    <a class="btn btn-default" href="/question?question={{ i.id }}" style="float: right" role="button">View details &raquo;</a>
+                </div>
+               </div>
+
+            </div>
+{%endfor%}
+{% if data.has_next %}
+    <div class="col-sm-12" style="margin-top: 20px" id="btn{{ data.next_page_number }}">
+    <button class="btn btn-warning" onclick="scr({{ data.next_page_number }})">More</button>
+{#    <a class="infinite-more-link" href="?page={{ data.next_page_number }}">More</a>#}
+    </div>
+  {% endif %}
+
+       </div>
+</div>
+</div>
+{#</div>#}
+
+{#<script>#}
+{#    var infinite = new Waypoint.Infinite({#}
+{#      element: $('.infinite-container')[0]#}
+{#    });#}
+{#  </script>#}
+
+
+{#<div class="pagination" style="margin-left: 40%">#}
+{#    <span class="step-links">#}
+{#        {% if data.has_previous %}#}
+{#             <a class="btn btn-success" href="?page={{ data.previous_page_number }}"> Previous</a>#}
+{#            <button type="submit" class="btn btn-success" href="?page={{ data.previous_page_number }}">previous</button>#}
+{#        {% endif %}#}
+{##}
+{#        {% if data.has_previous or data.has_next %}#}
+{#        <span class="current">#}
+{#            Page {{ data.number }} of {{ data.paginator.num_pages }}#}
+{#        </span>#}
+{#        {% endif %}#}
+{##}
+{#        {% if data.has_next %}#}
+{#             <a class="btn btn-lg btn-success" href="?page={{ data.next_page_number }}" role="button"> Next</a>#}
+{##}
+{#            <button type="submit" class="btn btn-success" href="?page={{ data.previous_page_number }}">next</button>#}
+{##}
+{##}
+{#        {% endif %}#}
+{#    </span>#}
+{#</div>#}
+{#<a type="button" class="btn btn-info btn-lg" data-toggle="modal" href="/myModal" onclick="modal">Open Modal</a>#}
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{#    {% block js %}#}
+{#        <script>#}
+{#            (function() {$('.js-vote').on('click',function () {#}
+{#            var $this = $(this);#}
+{#            var qid = $this.data('qid');#}
+{#            var vote = $this.data('vote');#}
+{#            console.log('qid: '+ qid + ' vote: ' + vote);#}
+{#            $.post('/vote/',{qid: qid ,vote:vote}).done(function () {#}
+{#                console.log(data);#}
+{#            });#}
+{#            return false;#}
+{#        </script>#}
+{#    {% endblock %}#}
+{#    {% block js %}#}
+{#    <script>#}
+{#        (function() {$('.js-vote').on('click',function () {#}
+{#            var $this = $(this);#}
+{#            var qid = $this.data('qid');#}
+{#            var vote = $this.data('vote');#}
+{#            console.log('qid: '+ qid + ' vote: ' + vote);#}
+{#            $.post('/vote/',{qid: qid ,vote:vote}).done(function () {#}
+{#                console.log(data);#}
+{#            });#}
+{#            return false;#}
+{##}
+{#        }) })();#}
+{#    </script>#}
+{##}
+{#{% endblock %}#}
+
+
+{% endblock %}
+

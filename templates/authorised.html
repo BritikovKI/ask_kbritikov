@@ -1,10 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "Base.html" %}
+{% block auth %}
+
+          <form class=" navbar-right">
+            <a href="" style="margin-right: 50px ">
+                 <img src="{{ user.author.img }}" hspace="10" height="30px" width="30px" >
+            </a>
+            <form class="navbar-form">
+                <a  href="" style="margin-top:5px;margin-right: 50px; color: whitesmoke ;align-content: center">
+                    {{ user.author.nickname }}
+                </a>
+                <ul  class="  hr" >
+                  <li ><a style="color: whitesmoke;" href={%   url "settings" %}>Settings</a></li>
+                  <li><a style="color: whitesmoke;"  data-toggle="modal" data-href-template="#myModal" href={%   url "lo" %}>Log Out</a></li>
+                  <li><a style="color: whitesmoke;" href={%   url "deb" %}>New</a></li>
+                </ul>
+            </form>
+
+          </form>
+
+
+
+
+{% endblock %}
+{% block content %}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Закрыть">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Заголовок модального окна</h4>
+      </div>
+      <div class="modal-body">
+        Содержимое модального окна...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary">Сохранить изменения</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

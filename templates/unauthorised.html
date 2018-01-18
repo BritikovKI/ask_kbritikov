@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "Base.html" %}
+{% block auth %}
+          <form class=" navbar-right">
+
+                <ul  class="  hr" style="margin-top: 15px" >
+                  <li ><a style="color: whitesmoke;" href="/auth">Log in</a></li>
+                  <li><a style="color: whitesmoke;" href="/reg">Register</a></li>
+                </ul>
+
+
+          </form>
+{% endblock %}
